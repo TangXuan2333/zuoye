@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>gukiy</title>
+	<style type="text/css">
+		#div1{
+			border:none;
+            width:478px;
+            height:450px;
+	        float:left;
+	        margin-left: 200px;
+	        margin-top: 50px;
+		}
+		#div2{
+			border:none;
+            width:478px;
+            height:450px;
+	        float:left;
+	        margin-left: 100px;
+		}
+		textarea{
+			font-size: 20px;
+		}
+		input{
+			width: 200px;
+			height: 50px;
+			background-color: orange;
+		}
+		p{
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+<div id="div1"><img src="location.jpg">
+<p>冰岩作坊团队主管：常明明</p>
+<p>工作邮箱：cmm@bingyan.net</p>
+<p>办公电话：(027)87793534</p>
+<p>传真：(027)87542401(停用)</p>
+<p>地址：中国武汉华中科技大学(东校区)启明学院亮胜楼1006</p>
+</div>
+<div id="div2">
+	<form action="save.php" method="post" >
+	<p>姓名</p>
+        <textarea cols="32" rows="1"></textarea><br/>
+        <p>邮箱</p>
+		<textarea cols="32" rows="1"></textarea><br/>
+		<p>电话</p>
+		<textarea cols="32" rows="1"></textarea><br/>
+		<p>信息<p>
+		<textarea cols="32" rows="7"></textarea><br/>
+		<input type="submit" value="发送信息" name="submit"、>
+    </form>
+</div>
+</body>
+</html>

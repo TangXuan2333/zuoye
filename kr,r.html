@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>dd</title>
+  <style type="text/css">
+  *{
+      margin: 0;
+      padding: 0;
+      text-decoration:none;
+    }
+    #list{
+      width: 9450px;
+      height: 517px;
+      position: absolute;
+      z-index: 1;
+    }
+    #buttons{
+      position: absolute;
+      height: 220px;
+      width: 1300px;
+      z-index: 2;
+      bottom: 150px;
+      left: 100px;
+    }
+    #buttons span{
+      cursor: pointer;
+      float: left;
+      border: 1px solid #fff;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background:grey;
+      margin-right: 5px;
+      overflow: hidden;
+    }
+    #buttons .on{
+      background:none;
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    #container{
+      width: 1350px;
+      height: 517px;
+      overflow: hidden;
+      position: relative;
+    }
+    #container:hover .arrow{
+      display: block;
+    }
+    #list img{
+      float: left;
+    }
+    body{
+      padding: 20px;
+    }
+    #prev{
+      left: 20px;
+    }
+    #next{
+      right: 20px;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload=function(){
+      var container=document.getElementById('container');
+      var list=document.getElementById('list');
+      var buttons=document.getElementById('buttons').getElementsByTagName('span');
+      var prev=document.getElementById('prev');
+      var next=document.getElementById('next');
+      var index=1;
+      var timer;
+      function showButton(){
+        for(var i=0;i<buttons.length;i++){
+          if(buttons[i].className=='on'){
+            buttons[i].className='';
+            break;
+          }
+        }
+        buttons[index-1].className='on';
+      }
+      function animate(offset){
+        var newLeft=parseInt(list.style.left)+offset;
+        var time=300;//位移总时间
+        var interval=10;//位移间隔时间
+        var speed=offset/(time/interval);
+        function go(){
+          if((speed<0&&parseInt(list.style.left)>newLeft)||(speed>0&&parseInt(list.style.left)<newLeft)){
+            list.style.left=parseInt(list.style.left)+speed+'px';
+            setTimeout(go,interval);
+          }
+          else
+          {
+            list.style.left=newLeft+'px';
+                if(newLeft>-1350){
+                  list.style.left=-6750+'px';
+                }
+                if(newLeft<-6750){
+                  list.style.left=-1350+'px';
+                }
+          }
+        }
+        go();
+      }
+      function play(){
+                timer=setInterval(function(){
+                  next.onclick();
+                }, 3000);
+      }
+      function stop(){
+        clearInterval(timer);
+      }
+      next.onclick=function(){
+        if(index==5){
+          index=1;
+        }
+        else{
+          index+=1;
+        }
+        showButton();
+        animate(-1350);
+      }
+      prev.onclick=function(){
+        if(index==1){
+          index=5;
+        }
+        else{
+          index-=1;
+        }
+        showButton();
+        animate(1350)
+      }
+      for(var i=0;i<buttons.length;i++){
+        buttons[i].onclick=function(){
+          if(this.className=='on'){
+            return;
+          }
+                    var myindex=parseInt(this.getAttribute('index'));
+                    var offset=-1350*(myindex-index);
+                    animate(offset);
+                    index=myindex;
+                    showButton();
+        }
+      }
+      container.onmouseover=stop;
+      container.onmouseout=play;
+    }
+  </script>
+</head>
+<body>
+<div id="container">
+  <div id="list" style="left: -1350px;">
+      <img src="5+4688.png" alt="5"/>
+    <img src="464.png" alt="1"/>
+    <img src="+554.png" alt="2"/>
+    <img src="484986.png" alt="3"/>
+    <img src="lahy20150610-1-l.png" alt="4"/>
+    <img src="5+4688.png" alt="5"/>
+    <img src="464.png" alt="1"/>
+  </div>
+  <div id="buttons">
+    <a href="http://www.bingyan.net/team"><span index="1" class="on"><h2><br/><br/><br/><h3>&nbsp;Team&nbsp;Introduction</h3><br/>&nbsp;&nbsp;&nbsp;&nbsp;团队介绍</h2></span></a>
+      <a href=""><span index="2"><h2><br/><br/><br/><h3>&nbsp;Group&nbsp;Introduction</h3><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;各组介绍</h2></span></a>
+      <a href=""><span index="3"><h2><br/><br/><br/><h3>&nbsp;&nbsp;&nbsp;&nbsp;Protfolio</h3><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陈列室</h2></span></a>
+      <a href=""><span index="4"><h2><br/><br/><br/><h3>&nbsp;&nbsp;&nbsp;&nbsp;Members</h3><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成员风采</h2></span></a>
+      <a href=""><span index="5"><h2><br/><br/><br/><h3>&nbsp;&nbsp;&nbsp;&nbsp;Join us</h3><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入我们</h2></span></a>
+  </div>
+  <a href="javascript:;" class="arrow" id="prev">&lt;</a>
+  <a href="javascript:;" class="arrow" id="next">&gt;</a>
+</div>
+</body>
+</html>
